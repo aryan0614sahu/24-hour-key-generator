@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>24 Hour Key Generator</title>
+</head>
+<body>
+
+  <h1>24 Hour Key Generator</h1>
+  <p>Generate your key below.</p>
+
+  <button onclick="generateKey()">Generate Key</button>
+
+  <p id="key"></p>
+
+  <script>
+    function generateKey() {
+      const key =
+        Math.random().toString(36).substring(2, 6).toUpperCase() +
+        "-" +
+        Math.random().toString(36).substring(2, 6).toUpperCase();
+
+      document.getElementById("key").textContent =
+        "Your key: " + key;
+    }
+  </script>
+
+</body>
+</html>
