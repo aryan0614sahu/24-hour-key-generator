@@ -1,30 +1,119 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>24 Hour Key Generator</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>24-Hour Key Generator</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --accent-color: #3b82f6;
+            --accent-hover: #2563eb;
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .container {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 25px;
+        }
+
+        .key-display {
+            background-color: #0f172a;
+            border: 2px dashed #334155;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            word-break: break-all;
+            min-height: 24px;
+            color: #38bdf8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        button {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: var(--accent-hover);
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+    </style>
 </head>
 <body>
 
-  <h1>24 Hour Key Generator</h1>
-  <p>Generate your key below.</p>
+    <div class="container">
+        <h1>24 Hour Key Generator</h1>
+        <p>Generate a secure, temporary key below.</p>
+        
+        <!-- Key display area -->
+        <div class="key-display" id="keyBox">Click Generate Button</div>
+        
+        <button onclick="generateSecureKey()">Generate Key</button>
+    </div>
 
-  <button onclick="generateKey()">Generate Key</button>
-
-  <p id="key"></p>
-
-  <script>
-    function generateKey() {
-      const key =
-        Math.random().toString(36).substring(2, 6).toUpperCase() +
-        "-" +
-        Math.random().toString(36).substring(2, 6).toUpperCase();
-
-      document.getElementById("key").textContent =
-        "Your key: " + key;
-    }
-  </script>
+    <script>
+        function generateSecureKey() {
+            // Ek secure aur unique key generate karne ke liye string character bank
+            const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            let result = "KEY-";
+            
+            // 16 character ki unique random string banana
+            for (let i = 0; i < 16; i++) {
+                result += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            
+            // Screen par key display karna
+            document.getElementById("keyBox").innerText = result;
+        }
+    </script>
 
 </body>
 </html>
